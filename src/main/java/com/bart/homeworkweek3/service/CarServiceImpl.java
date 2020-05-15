@@ -16,9 +16,9 @@ public class CarServiceImpl implements CarService {
 
     public CarServiceImpl() {
         carList = new ArrayList<>();
-        carList.add(new Car(1L, "MASERATI", "GRAN TURISMO", Color.RED));
-        carList.add(new Car(2L, "FERRARI", "CALIFORNIA", Color.BLACK));
-        carList.add(new Car(3L, "BUGATTI", "CHIRON", Color.WHITE));
+        carList.add(new Car(1L, "MASERATI", "GRAN TURISMO", 2013 ,Color.RED));
+        carList.add(new Car(2L, "FERRARI", "CALIFORNIA", 2019,Color.BLACK));
+        carList.add(new Car(3L, "BUGATTI", "CHIRON", 2020,Color.WHITE));
     }
 
     @Override

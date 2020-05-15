@@ -20,8 +20,8 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 @RestController
 @RequestMapping(value = "/cars", produces = {
-        MediaType.APPLICATION_XML_VALUE,
-        MediaType.APPLICATION_JSON_VALUE})
+        MediaType.APPLICATION_JSON_VALUE,
+        MediaType.APPLICATION_XML_VALUE})
 public class CarController {
 
     private CarService carService;
@@ -43,7 +43,7 @@ public class CarController {
 
     //pobranie po id
     @GetMapping("/{id}")
-    public ResponseEntity<Resource<Car>> getCarById(@PathVariable long id) {
+    public ResponseEntity<Resource<Car>> getCarById(@Validated @PathVariable long id) {
         Link link = linkTo(CarController.class).slash(id).withSelfRel();
         Optional<Car> carById = carService.getCarById(id);
         Resource<Car> carResource = new Resource<>(carById.get(), link);
@@ -52,7 +52,7 @@ public class CarController {
 
     //pobranie po kolorze
     @GetMapping("/color/{color}")
-    public ResponseEntity<Resources<Car>> getCarsByColor(@PathVariable String color) {
+    public ResponseEntity<Resources<Car>> getCarsByColor(@Validated @PathVariable String color) {
         List<Car> carList = carService.getCarByColor(Color.valueOf(color.toUpperCase()));
         carList.forEach(car -> car.add(linkTo(CarController.class).slash(car.getId()).withSelfRel()));
         carList.forEach(car -> car.add(linkTo(CarController.class).withRel("allColors")));
