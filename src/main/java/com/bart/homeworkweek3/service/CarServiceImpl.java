@@ -28,16 +28,16 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Optional<Car> findCarById(long id) {
+    public Optional<Car> getCarById(long id) {
 
         return carList
                 .stream()
-                .filter(car -> car.getId() == id)
+                .filter(car -> car.getCarId() == id)
                 .findFirst();
     }
 
     @Override
-    public List<Car> findCarByColor(Color color) {
+    public List<Car> getCarByColor(Color color) {
         return carList
                 .stream()
                 .filter(e -> e.getColor().equals(color))
@@ -53,7 +53,7 @@ public class CarServiceImpl implements CarService {
     public Optional<Car> modifyCar(Car car) {
         Optional<Car> modifyCar = carList
                 .stream()
-                .filter(carId -> carId.getId() == car.getId())
+                .filter(carId -> carId.getCarId() == car.getCarId())
                 .findFirst();
         if (modifyCar.isPresent()) {
             carList.remove(modifyCar.get());
@@ -66,7 +66,7 @@ public class CarServiceImpl implements CarService {
     public boolean modifyColorCarById(Car newCar) {
         Optional<Car> car = carList
                 .stream()
-                .filter(Car -> Car.getId() == newCar.getId())
+                .filter(Car -> Car.getCarId() == newCar.getCarId())
                 .findFirst();
         if (car.isPresent()) {
             if (newCar.getMark() != null) {
@@ -81,11 +81,9 @@ public class CarServiceImpl implements CarService {
     public Optional<Car> deleteCarById(long id) {
         Optional<Car> removeCar = carList
                 .stream()
-                .filter(carId -> carId.getId() == id)
+                .filter(carId -> carId.getCarId() == id)
                 .findFirst();
-        if (removeCar.isPresent()) {
-            carList.remove(removeCar.get());
-        }
+        removeCar.ifPresent(car -> carList.remove(car));
         return removeCar;
     }
 }

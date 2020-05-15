@@ -10,9 +10,9 @@ public interface CarService {
 
     List<Car> getAllCars();
 
-    Optional<Car> findCarById(long id);
+    Optional<Car> getCarById(long id);
 
-    List<Car> findCarByColor(Color color);
+    List<Car> getCarByColor(Color color);
 
     boolean addCar(Car car);
 

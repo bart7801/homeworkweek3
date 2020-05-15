@@ -1,8 +1,10 @@
 package com.bart.homeworkweek3.model;
 
-public class Car {
+import org.springframework.hateoas.ResourceSupport;
 
-    private long id;
+public class Car extends ResourceSupport {
+
+    private long carId;
     private String mark;
     private String model;
     private Color color;
@@ -10,19 +12,19 @@ public class Car {
     public Car() {
     }
 
-    public Car(long id, String mark, String model, Color color) {
-        this.id = id;
+    public Car(long carId, String mark, String model, Color color) {
+        this.carId = carId;
         this.mark = mark;
         this.model = model;
         this.color = color;
     }
 
-    public long getId() {
-        return id;
+    public long getCarId() {
+        return carId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(long carId) {
+        this.carId = carId;
     }
 
     public String getMark() {

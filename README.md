@@ -23,5 +23,5 @@ Przy starcie aplikacji mają dodawać się 3 pozycje.
 Dla ambitnych:
 
     rozbuduj aplikacje o możliwość zwracania danych w postaci XML
-    dodaj obsługę Swgger UI
+    dodaj obsługę Swagger UI
     zaimplementuj HATEOAS
