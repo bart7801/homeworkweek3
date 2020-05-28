@@ -1,35 +1,39 @@
 package com.bart.homeworkweek3.model;
 
-import org.springframework.hateoas.ResourceSupport;
+import com.vaadin.flow.component.polymertemplate.Id;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class Car extends ResourceSupport {
+public class Car {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull(message = "CAR ID CAN'T BE NULL")
-    private long carId;
+    private Long carId;
     @NotNull
     @Size(min = 1)
-    private String mark;
+    private String brand;
     @NotNull
     @Size(min = 1)
     private String model;
-    @Min(1900)
-    @Max(2020)
-    private int year;
+    private Double yearProduction;
+    private Fuel fuel;
+    private CarType carType;
     private Color color;
 
     public Car() {
     }
 
-    public Car(long carId, String mark, String model, int year, Color color) {
+    public Car(String brand, String model, Double yearProduction, Fuel fuel, CarType carType, Color color) {
         this.carId = carId;
-        this.mark = mark;
+        this.brand = brand;
         this.model = model;
-        this.year = year;
+        this.yearProduction = yearProduction;
+        this.fuel = fuel;
+        this.carType = carType;
         this.color = color;
     }
 
@@ -37,16 +41,16 @@ public class Car extends ResourceSupport {
         return carId;
     }
 
-    public void setId(long carId) {
+    public void setCarId(Long carId) {
         this.carId = carId;
     }
 
-    public String getMark() {
-        return mark;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setMark(String mark) {
-        this.mark = mark;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public String getModel() {
@@ -57,12 +61,28 @@ public class Car extends ResourceSupport {
         this.model = model;
     }
 
-    public int getYear() {
-        return year;
+    public Double getYearProduction() {
+        return yearProduction;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setYearProduction(Double yearProduction) {
+        this.yearProduction = yearProduction;
+    }
+
+    public Fuel getFuel() {
+        return fuel;
+    }
+
+    public void setFuel(Fuel fuel) {
+        this.fuel = fuel;
+    }
+
+    public CarType getCarType() {
+        return carType;
+    }
+
+    public void setCarType(CarType carType) {
+        this.carType = carType;
     }
 
     public Color getColor() {
@@ -72,4 +92,18 @@ public class Car extends ResourceSupport {
     public void setColor(Color color) {
         this.color = color;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carId=" + carId +
+                ", mark='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", yearProduction=" + yearProduction +
+                ", fuel=" + fuel +
+                ", carType=" + carType +
+                ", color=" + color +
+                '}';
+    }
+
 }
